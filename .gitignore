@@ -1,0 +1,6 @@
+.vscode/launch.json
+.vscode/settings.json
+.vscode/tasks.json
+mentalyc-backend-flask/__pycache__/app.cpython-39.pyc
+venv/*
+docker-compose.debug.yml
