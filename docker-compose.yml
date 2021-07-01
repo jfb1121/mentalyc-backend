@@ -1,0 +1,33 @@
+version: '3.4'
+
+services:
+  mentalycbackendflask:
+    image: mentalycbackendflask
+    env_file: ./settings.env
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 5000:5000
+    volumes:
+      - mentalycbackendflask:/var/www
+    depends_on:
+      - mongodb
+  mongodb:
+    image: mongo:4.0.8
+    container_name: mongodb
+    restart: unless-stopped
+    command: mongod
+    environment:
+      # MONGO_INITDB_ROOT_USERNAME: mentaly
+      # MONGO_INITDB_ROOT_PASSWORD: random_pas
+      MONGO_INITDB_DATABASE: flaskdb
+      MONGODB_DATA_DIR: /data/db
+      MONDODB_LOG_DIR: /dev/null
+    volumes:
+      - mongodb:/data/db
+volumes:
+  mongodb:
+    driver: local
+  mentalycbackendflask:
+    driver: local
